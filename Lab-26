@@ -1,0 +1,41 @@
+"""
+Day 26 Activity: Data Distributions
+Tasks:
+1) Load numeric dataset
+2) Plot histograms and KDEs
+3) Compute mean, median, std, skew
+4) Apply log1p to a skewed feature and replot
+"""
+
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+#TODO: Load data from data/day26_distributions.csv
+df = pd.read_csv("python\day26_distributions (1).csv")
+
+# TODO: Plot histogram and KDE for each numeric column
+#Function for HIST and KDE
+def plot_hist_kde(column):
+
+    sns.histplot(df[column], bins=5, color='blue', alpha=0.5)
+    plt.title(f"{column} Histogram")
+    plt.show()
+    sns.kdeplot(df[column], fill=True)
+    plt.title(f"{column} KDE")
+    plt.show()
+
+
+plot_hist_kde("income")
+plot_hist_kde("age")
+plot_hist_kde("transactions")
+
+
+# TODO: Compute summary stats
+print(df.describe())
+
+
+# TODO: Apply log1p to skewed feature and replot
+df["log_income"] = np.log1p(df["income"])
+plot_hist_kde("log_income")

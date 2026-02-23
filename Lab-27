@@ -1,0 +1,23 @@
+"""
+Day 27 Activity: Histograms & Boxplots
+Tasks:
+1) Plot histogram for numeric variable
+2) Plot boxplot for numeric by category
+3) Compare group distributions
+"""
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# TODO: Load data from data/day27_boxplots.csv
+df = pd.read_csv("python/day27_boxplots.csv")
+
+# TODO: Histogram for score
+df["score"].hist(bins=7)
+plt.title("Scores Histogram")
+plt.show()
+# TODO: Boxplot for score by group
+sns.boxplot(x="group", y="score", data=df)
+plt.title("Boxplot")
+plt.show()

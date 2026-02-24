@@ -1,0 +1,31 @@
+"""
+Day 29 Activity: Correlations
+Tasks:
+1) Compute correlation matrix
+2) Plot heatmap
+3) Plot scatter plots for strong/weak pairs
+"""
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# TODO: Load data from data/day29_correlations.csv
+df = pd.read_csv("python\day29_correlations.csv")
+
+# TODO: Compute corr and plot heatmap
+corrl=df[["feature_x","feature_y","feature_z","target"]].corr()
+sns.heatmap(corrl,annot=True,cmap="coolwarm",vmin=-1,vmax=1)
+plt.title("Corr Heatmap")
+plt.tight_layout
+plt.show()
+# TODO: Scatter plots for key pairs
+sns.scatterplot(x="feature_x",y="target",data=df)
+plt.title("Strong Correlation")
+plt.tight_layout()
+plt.show()
+
+sns.scatterplot(x="feature_y",y="feature_z",data=df)
+plt.title("Weak Correlation")
+plt.tight_layout()
+plt.show()

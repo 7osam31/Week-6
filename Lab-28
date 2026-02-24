@@ -1,0 +1,25 @@
+"""
+Day 28 Activity: Grouping & Aggregation
+Tasks:
+1) Load dataset
+2) Compute groupby summaries
+3) Plot aggregated metric
+"""
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+
+# TODO: Load data from data/day28_groupby.csv
+df = pd.read_csv("python/day28_groupby.csv")
+
+# TODO: Group by region and segment
+grouped= df.groupby(["region", "segment"])["sales"].agg(["mean", "median", "std"])
+print(grouped.head())
+# TODO: Plot mean sales by region
+means=df.groupby("region")["sales"].agg("mean")
+sns.barplot(x=means.index,y=means.values)
+plt.title("bar for mean by region")
+plt.show()
